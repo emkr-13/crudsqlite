@@ -1,6 +1,7 @@
 from fastapi import FastAPI, HTTPException, Depends
 from pydantic import BaseModel
 import databases
+import datetime as dt
 
 DATABASE_URL = "sqlite:///./online_news.db"
 
@@ -10,16 +11,16 @@ app = FastAPI()
 
 class ProgressCreate(BaseModel):
     name: str
-    progress_time: str
+    progress_time: dt.date
 
 class ProgressUpdate(BaseModel):
     name: str = None
-    progress_time: str = None
+    progress_time: dt.date = None
 
 class ProgressOnlineNews(BaseModel):
     id: int
     name: str
-    progress_time: str
+    progress_time: dt.date
 
 # Dependency to get the database connection
 async def get_db():
